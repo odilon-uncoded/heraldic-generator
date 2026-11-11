@@ -12,14 +12,15 @@ const { buildGrid, slugify, mulberry32, formatSeedLine } = require('../lib/core'
 const { serializeText, serializeAnsi, serializeSvg, cellsToAnsi } = require('../lib/serialize');
 const { serializeSvgToPngBuffer } = require('../lib/png');
 const { computeDecodeFrame, DECODE_DURATION_MS, DECODE_STAGGER_MS } = require('../lib/animate');
+const { renderReel } = require('../lib/reel');
 
 const BANNER = `▗▖ ▗▖▗▄▄▄▖▗▄▄▖  ▗▄▖ ▗▖   ▗▄▄▄ ▗▄▄▄▖ ▗▄▄▖
 ▐▌ ▐▌▐▌   ▐▌ ▐▌▐▌ ▐▌▐▌   ▐▌  █  █  ▐▌
 ▐▛▀▜▌▐▛▀▀▘▐▛▀▚▖▐▛▀▜▌▐▌   ▐▌  █  █  ▐▌
 ▐▌ ▐▌▐▙▄▄▖▐▌ ▐▌▐▌ ▐▌▐▙▄▄▖▐▙▄▄▀▗▄█▄▖▝▚▄▄▖
-CLI v0.3.0 — tape /help`;
+CLI v0.4.0 — tape /help`;
 
-const EXPORT_FORMATS = ['png', 'png-story', 'png-clean', 'png-clean-story', 'mp4', 'mp4-story', 'mp4-clean', 'mp4-clean-story', 'txt', 'ans', 'svg'];
+const EXPORT_FORMATS = ['png', 'png-story', 'png-clean', 'png-clean-story', 'mp4', 'mp4-story', 'mp4-clean', 'mp4-clean-story', 'reel', 'txt', 'ans', 'svg'];
 const STORY_HEIGHT = 1920;
 
 function svgOptsFor(grid, story, clean) {
@@ -139,7 +140,28 @@ function requireGrid() {
   return true;
 }
 
-async function runExport(fmt) {
+// Reel 9:16 de 15 s (intro gothique, pousse du blason, tenue, dissolution).
+// `audioArg` : chemin optionnel d'une piste à mixer ; sinon piste silencieuse.
+async function runReelExport(audioArg) {
+  const text = currentText, entropy = currentEntropy; // capture avant tout await
+  const filename = `${slugify(text)}-reel.mp4`;
+  let audioPath;
+  if (audioArg) {
+    audioPath = path.resolve(audioArg.replace(/^~(?=$|\/)/, os.homedir()));
+    if (!fs.existsSync(audioPath)) throw new Error(`piste audio introuvable: ${audioPath}`);
+  }
+  console.log('rendu du reel (15 s, ~20 s de calcul)…');
+  try {
+    await renderReel(text, entropy, filename, audioPath);
+  } catch (err) {
+    fs.rmSync(filename, { force: true });
+    throw err;
+  }
+  console.log(`écrit: ${filename}`);
+}
+
+async function runExport(fmt, extra) {
+  if (fmt === 'reel') return runReelExport(extra);
   const clean = fmt.includes('-clean');
   const story = fmt.includes('-story');
   const suffix = (clean ? '-clean' : '') + (story ? '-story' : '');
@@ -162,13 +184,13 @@ async function runExport(fmt) {
   console.log(`écrit: ${filename}`);
 }
 
-function handleExport(arg) {
+function handleExport(arg, extra) {
   if (!arg || !EXPORT_FORMATS.includes(arg)) {
     console.log(`format invalide — formats valides: ${EXPORT_FORMATS.join(', ')}`);
     return;
   }
   if (!requireGrid()) return;
-  pendingExport = runExport(arg).catch((err) => {
+  pendingExport = runExport(arg, extra).catch((err) => {
     console.log(`échec écriture fichier: ${err.message}`);
   });
 }
@@ -179,7 +201,8 @@ const COMMANDS = {
       'commandes disponibles :',
       '  <texte>              génère un blason à partir du texte',
       '  /reroll               nouveau tirage du même texte',
-      '  /export <fmt>         exporte le dernier blason (fmt: png, png-story, png-clean, png-clean-story, mp4, mp4-story, mp4-clean, mp4-clean-story, txt, ans, svg)',
+      '  /export <fmt>         exporte le dernier blason (fmt: png, png-story, png-clean, png-clean-story, mp4, mp4-story, mp4-clean, mp4-clean-story, reel, txt, ans, svg)',
+      '  /export reel [audio]  reel 9:16 de 15 s ; chemin de piste audio optionnel',
       '  /clear                 vide l’écran',
       '  /quit                  quitte le programme',
       '  /help                  affiche cette liste',
@@ -204,7 +227,7 @@ async function handleLine(raw) {
   if (text[0] === '/') {
     const [name, ...rest] = text.slice(1).split(/\s+/);
     const key = name.toLowerCase();
-    if (key === 'export') { handleExport(rest[0] ? rest[0].toLowerCase() : undefined); return; }
+    if (key === 'export') { handleExport(rest[0] ? rest[0].toLowerCase() : undefined, rest.slice(1).join(' ') || undefined); return; }
     if (Object.hasOwn(COMMANDS, key)) { await COMMANDS[key](); return; }
     console.log(`commande inconnue: /${name} — tape /help`);
     return;
