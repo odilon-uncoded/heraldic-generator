@@ -18,7 +18,7 @@ const BANNER = `▗▖ ▗▖▗▄▄▄▖▗▄▄▖  ▗▄▖ ▗▖   ▗
 ▐▌ ▐▌▐▌   ▐▌ ▐▌▐▌ ▐▌▐▌   ▐▌  █  █  ▐▌
 ▐▛▀▜▌▐▛▀▀▘▐▛▀▚▖▐▛▀▜▌▐▌   ▐▌  █  █  ▐▌
 ▐▌ ▐▌▐▙▄▄▖▐▌ ▐▌▐▌ ▐▌▐▙▄▄▖▐▙▄▄▀▗▄█▄▖▝▚▄▄▖
-CLI v0.4.0 — tape /help`;
+CLI v0.5.0 — tape /help`;
 
 const EXPORT_FORMATS = ['png', 'png-story', 'png-clean', 'png-clean-story', 'mp4', 'mp4-story', 'mp4-clean', 'mp4-clean-story', 'reel', 'txt', 'ans', 'svg'];
 const STORY_HEIGHT = 1920;
@@ -150,9 +150,11 @@ async function runReelExport(audioArg) {
     audioPath = path.resolve(audioArg.replace(/^~(?=$|\/)/, os.homedir()));
     if (!fs.existsSync(audioPath)) throw new Error(`piste audio introuvable: ${audioPath}`);
   }
-  console.log('rendu du reel (15 s, ~20 s de calcul)…');
+  console.log('rendu du reel (20 s, ~25 s de calcul)…');
   try {
-    await renderReel(text, entropy, filename, audioPath);
+    const { silhouette } = await renderReel(text, entropy, filename, audioPath);
+    if (silhouette) console.log(`silhouette: ${silhouette.id} — icône ${silhouette.author}, game-icons.net (CC BY 3.0), à créditer`);
+    else console.log('pas de silhouette pour ce mot : reel mot → blason');
   } catch (err) {
     fs.rmSync(filename, { force: true });
     throw err;
@@ -202,7 +204,7 @@ const COMMANDS = {
       '  <texte>              génère un blason à partir du texte',
       '  /reroll               nouveau tirage du même texte',
       '  /export <fmt>         exporte le dernier blason (fmt: png, png-story, png-clean, png-clean-story, mp4, mp4-story, mp4-clean, mp4-clean-story, reel, txt, ans, svg)',
-      '  /export reel [audio]  reel 9:16 de 15 s ; chemin de piste audio optionnel',
+      '  /export reel [audio]  reel 9:16 de 20 s (mot → objet → blason) ; piste audio optionnelle',
       '  /clear                 vide l’écran',
       '  /quit                  quitte le programme',
       '  /help                  affiche cette liste',

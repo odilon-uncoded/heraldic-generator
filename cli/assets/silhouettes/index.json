@@ -1,0 +1,632 @@
+{
+ "license": "CC BY 3.0, game-icons.net",
+ "silhouettes": [
+  {
+   "id": "castle",
+   "file": "castle.svg",
+   "author": "Delapouite",
+   "source": "delapouite/castle",
+   "words": [
+    "bastion",
+    "castle",
+    "castles",
+    "chateau",
+    "citadel",
+    "citadelle",
+    "donjon",
+    "forteresse",
+    "fortress",
+    "keep",
+    "rempart"
+   ]
+  },
+  {
+   "id": "tower",
+   "file": "tower.svg",
+   "author": "Lorc",
+   "source": "lorc/stone-tower",
+   "words": [
+    "beffroi",
+    "guet",
+    "tour",
+    "tourelle",
+    "tower",
+    "vigie",
+    "watchtower"
+   ]
+  },
+  {
+   "id": "ruins",
+   "file": "ruins.svg",
+   "author": "Delapouite",
+   "source": "delapouite/castle-ruins",
+   "words": [
+    "decombres",
+    "ruin",
+    "ruine",
+    "ruines",
+    "ruins",
+    "vestige",
+    "vestiges"
+   ]
+  },
+  {
+   "id": "tombstone",
+   "file": "tombstone.svg",
+   "author": "Lorc",
+   "source": "lorc/tombstone",
+   "words": [
+    "burial",
+    "grave",
+    "graves",
+    "gravesite",
+    "gravestone",
+    "headstone",
+    "sepulcher",
+    "sepulchre",
+    "sepulcre",
+    "sepulture",
+    "stele",
+    "tomb",
+    "tombe",
+    "tombs",
+    "tombstone"
+   ]
+  },
+  {
+   "id": "graveyard",
+   "file": "graveyard.svg",
+   "author": "Delapouite",
+   "source": "delapouite/graveyard",
+   "words": [
+    "cemetary",
+    "cemetery",
+    "cimetiere",
+    "graveyard",
+    "necropole",
+    "necropolis"
+   ]
+  },
+  {
+   "id": "coffin",
+   "file": "coffin.svg",
+   "author": "Lorc",
+   "source": "lorc/coffin",
+   "words": [
+    "biere",
+    "catafalco",
+    "catafalque",
+    "cercueil",
+    "coffen",
+    "coffin"
+   ]
+  },
+  {
+   "id": "sarcophagus",
+   "file": "sarcophagus.svg",
+   "author": "Delapouite",
+   "source": "delapouite/sarcophagus",
+   "words": [
+    "gisant",
+    "loculus",
+    "mausolee",
+    "mausoleum",
+    "sarcophage",
+    "sarcophagus"
+   ]
+  },
+  {
+   "id": "crypt",
+   "file": "crypt.svg",
+   "author": "Delapouite",
+   "source": "delapouite/crypt-entrance",
+   "words": [
+    "carnary",
+    "catacomb",
+    "catacombe",
+    "catacombes",
+    "catacombs",
+    "crypt",
+    "crypte",
+    "cryptoportico",
+    "cubiculum",
+    "hypogee",
+    "ossuaire",
+    "ossuary",
+    "souterrain",
+    "undercroft",
+    "underhalls"
+   ]
+  },
+  {
+   "id": "dungeon",
+   "file": "dungeon.svg",
+   "author": "Delapouite",
+   "source": "delapouite/dungeon-gate",
+   "words": [
+    "cachot",
+    "cell",
+    "cellule",
+    "dungeon",
+    "geole",
+    "herse",
+    "jail",
+    "lock-up",
+    "oubliette",
+    "prison",
+    "stockade"
+   ]
+  },
+  {
+   "id": "cave",
+   "file": "cave.svg",
+   "author": "Delapouite",
+   "source": "delapouite/cave-entrance",
+   "words": [
+    "abime",
+    "abyss",
+    "abysse",
+    "antre",
+    "cave",
+    "cavelet",
+    "cavern",
+    "caverne",
+    "caving",
+    "gouffre",
+    "grotte",
+    "tunnel"
+   ]
+  },
+  {
+   "id": "skull",
+   "file": "skull.svg",
+   "author": "Sbed",
+   "source": "sbed/death-skull",
+   "words": [
+    "crane",
+    "death",
+    "memento",
+    "mort",
+    "skull",
+    "trepas"
+   ]
+  },
+  {
+   "id": "skeleton",
+   "file": "skeleton.svg",
+   "author": "Skoll",
+   "source": "skoll/skeleton",
+   "words": [
+    "lich",
+    "liche",
+    "ossements",
+    "skeleton",
+    "squelette",
+    "wight",
+    "wights"
+   ]
+  },
+  {
+   "id": "reaper",
+   "file": "reaper.svg",
+   "author": "Lorc",
+   "source": "lorc/grim-reaper",
+   "words": [
+    "faucheur",
+    "faucheuse",
+    "reaper"
+   ]
+  },
+  {
+   "id": "raven",
+   "file": "raven.svg",
+   "author": "Lorc",
+   "source": "lorc/raven",
+   "words": [
+    "corbeau",
+    "corneille",
+    "crow",
+    "freux",
+    "raven"
+   ]
+  },
+  {
+   "id": "bat",
+   "file": "bat.svg",
+   "author": "Delapouite",
+   "source": "delapouite/bat",
+   "words": [
+    "bat",
+    "chauve-souris",
+    "nosferatu",
+    "vampire"
+   ]
+  },
+  {
+   "id": "wolf",
+   "file": "wolf.svg",
+   "author": "Lorc",
+   "source": "lorc/wolf-head",
+   "words": [
+    "garou",
+    "loup",
+    "lycan",
+    "meute",
+    "werewolf",
+    "wolf"
+   ]
+  },
+  {
+   "id": "ghost",
+   "file": "ghost.svg",
+   "author": "Lorc",
+   "source": "lorc/ghost",
+   "words": [
+    "esprit",
+    "fantome",
+    "ghost",
+    "ombre",
+    "revenant",
+    "shade",
+    "spectre",
+    "spirit",
+    "wraith"
+   ]
+  },
+  {
+   "id": "hooded",
+   "file": "hooded.svg",
+   "author": "DarkZaitzev",
+   "source": "darkzaitzev/hooded-figure",
+   "words": [
+    "coven",
+    "cultist",
+    "cultiste",
+    "druide",
+    "ermite",
+    "hermit",
+    "moine",
+    "monk",
+    "pelerin",
+    "sorcier"
+   ]
+  },
+  {
+   "id": "grimoire",
+   "file": "grimoire.svg",
+   "author": "Delapouite",
+   "source": "delapouite/spell-book",
+   "words": [
+    "codex",
+    "grimoire",
+    "incantation",
+    "livre",
+    "sortilege",
+    "spellbook",
+    "tome"
+   ]
+  },
+  {
+   "id": "candle",
+   "file": "candle.svg",
+   "author": "Lorc",
+   "source": "lorc/candle-holder",
+   "words": [
+    "bougie",
+    "candle",
+    "chandelle",
+    "cierge",
+    "veille",
+    "veillee"
+   ]
+  },
+  {
+   "id": "lantern",
+   "file": "lantern.svg",
+   "author": "Delapouite",
+   "source": "delapouite/old-lantern",
+   "words": [
+    "fanal",
+    "lampe",
+    "lantern",
+    "lanterne"
+   ]
+  },
+  {
+   "id": "torch",
+   "file": "torch.svg",
+   "author": "Delapouite",
+   "source": "delapouite/torch",
+   "words": [
+    "brasier",
+    "flambeau",
+    "torch",
+    "torche"
+   ]
+  },
+  {
+   "id": "sword",
+   "file": "sword.svg",
+   "author": "Lorc",
+   "source": "lorc/broadsword",
+   "words": [
+    "blade",
+    "epee",
+    "estoc",
+    "glaive",
+    "lame",
+    "sword"
+   ]
+  },
+  {
+   "id": "dagger",
+   "file": "dagger.svg",
+   "author": "Lorc",
+   "source": "lorc/sacrificial-dagger",
+   "words": [
+    "dagger",
+    "dague",
+    "poignard",
+    "sacrifice"
+   ]
+  },
+  {
+   "id": "crown",
+   "file": "crown.svg",
+   "author": "Lorc",
+   "source": "lorc/sharp-crown",
+   "words": [
+    "couronne",
+    "crown",
+    "king",
+    "queen",
+    "reine",
+    "roi",
+    "throne",
+    "trone"
+   ]
+  },
+  {
+   "id": "chalice",
+   "file": "chalice.svg",
+   "author": "Lorc",
+   "source": "lorc/jeweled-chalice",
+   "words": [
+    "calice",
+    "chalice",
+    "coupe",
+    "graal",
+    "grail"
+   ]
+  },
+  {
+   "id": "cauldron",
+   "file": "cauldron.svg",
+   "author": "Lorc",
+   "source": "lorc/cauldron",
+   "words": [
+    "alchemy",
+    "alchimie",
+    "cauldron",
+    "chaudron",
+    "potion"
+   ]
+  },
+  {
+   "id": "crystal-ball",
+   "file": "crystal-ball.svg",
+   "author": "Lorc",
+   "source": "lorc/crystal-ball",
+   "words": [
+    "divination",
+    "oracle",
+    "prophecy",
+    "prophetie",
+    "voyance",
+    "voyant"
+   ]
+  },
+  {
+   "id": "moon",
+   "file": "moon.svg",
+   "author": "Lorc",
+   "source": "lorc/moon",
+   "words": [
+    "eclipse",
+    "lune",
+    "moon",
+    "night",
+    "nuit"
+   ]
+  },
+  {
+   "id": "rune-stone",
+   "file": "rune-stone.svg",
+   "author": "Lorc",
+   "source": "lorc/rune-stone",
+   "words": [
+    "barrow",
+    "cairn",
+    "dolmen",
+    "megalithe",
+    "menhir",
+    "monolithe",
+    "rune",
+    "runes",
+    "tumulus"
+   ]
+  },
+  {
+   "id": "church",
+   "file": "church.svg",
+   "author": "Delapouite",
+   "source": "delapouite/church",
+   "words": [
+    "abbaye",
+    "abbey",
+    "chapel",
+    "chapelle",
+    "church",
+    "eglise",
+    "monastere"
+   ]
+  },
+  {
+   "id": "wreck",
+   "file": "wreck.svg",
+   "author": "Delapouite",
+   "source": "delapouite/ship-wreck",
+   "words": [
+    "epave",
+    "naufrage",
+    "wreck"
+   ]
+  },
+  {
+   "id": "web",
+   "file": "web.svg",
+   "author": "Lorc",
+   "source": "lorc/spider-web",
+   "words": [
+    "araignee",
+    "spider",
+    "toile",
+    "web"
+   ]
+  },
+  {
+   "id": "hourglass",
+   "file": "hourglass.svg",
+   "author": "Lorc",
+   "source": "lorc/hourglass",
+   "words": [
+    "hourglass",
+    "sablier"
+   ]
+  },
+  {
+   "id": "key",
+   "file": "key.svg",
+   "author": "Lorc",
+   "source": "lorc/skeleton-key",
+   "words": [
+    "cle",
+    "clef",
+    "cryptic",
+    "cryptographic",
+    "encrypted",
+    "encryption",
+    "key",
+    "serrure"
+   ]
+  },
+  {
+   "id": "chains",
+   "file": "chains.svg",
+   "author": "Lorc",
+   "source": "lorc/crossed-chains",
+   "words": [
+    "chaine",
+    "chaines",
+    "chains",
+    "entrave",
+    "shackles"
+   ]
+  },
+  {
+   "id": "gargoyle",
+   "file": "gargoyle.svg",
+   "author": "Delapouite",
+   "source": "delapouite/gargoyle",
+   "words": [
+    "chimere",
+    "gargouille",
+    "gargoyle"
+   ]
+  },
+  {
+   "id": "dragon",
+   "file": "dragon.svg",
+   "author": "Delapouite",
+   "source": "delapouite/spiked-dragon-head",
+   "words": [
+    "dragon",
+    "guivre",
+    "vouivre",
+    "wyrm"
+   ]
+  },
+  {
+   "id": "obelisk",
+   "file": "obelisk.svg",
+   "author": "Delapouite",
+   "source": "delapouite/obelisk",
+   "words": [
+    "obelisk",
+    "obelisque"
+   ]
+  },
+  {
+   "id": "portal",
+   "file": "portal.svg",
+   "author": "Lorc",
+   "source": "lorc/magic-portal",
+   "words": [
+    "invocation",
+    "portail",
+    "portal",
+    "ritual",
+    "rituel"
+   ]
+  },
+  {
+   "id": "banner",
+   "file": "banner.svg",
+   "author": "Lorc",
+   "source": "lorc/tattered-banner",
+   "words": [
+    "banner",
+    "banniere",
+    "etendard",
+    "oriflamme"
+   ]
+  },
+  {
+   "id": "fog",
+   "file": "fog.svg",
+   "author": "Delapouite",
+   "source": "delapouite/fog",
+   "words": [
+    "brouillard",
+    "brume",
+    "fog",
+    "mist"
+   ]
+  },
+  {
+   "id": "helm",
+   "file": "helm.svg",
+   "author": "Delapouite",
+   "source": "delapouite/overlord-helm",
+   "words": [
+    "chevalier",
+    "heaume",
+    "helm",
+    "knight"
+   ]
+  },
+  {
+   "id": "pentacle",
+   "file": "pentacle.svg",
+   "author": "Lorc",
+   "source": "lorc/pentagram-rose",
+   "words": [
+    "occult",
+    "occulte",
+    "pentacle",
+    "sigil",
+    "sigile"
+   ]
+  }
+ ]
+}

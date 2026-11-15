@@ -54,7 +54,7 @@ commandes disponibles :
   <texte>              génère un blason à partir du texte
   /reroll               nouveau tirage du même texte
   /export <fmt>         exporte le dernier blason (fmt: png, png-story, png-clean, png-clean-story, mp4, mp4-story, mp4-clean, mp4-clean-story, reel, txt, ans, svg)
-  /export reel [audio]  reel 9:16 de 15 s ; chemin de piste audio optionnel
+  /export reel [audio]  reel 9:16 de 20 s (mot → objet → blason) ; piste audio optionnelle
   /clear                 vide l’écran
   /quit                  quitte le programme
   /help                  affiche cette liste
@@ -77,7 +77,7 @@ Supported export formats:
 - `mp4-story`: tall video with decode animation (1080×1920, 30fps, ~2.2s) — same letterbox treatment as `png-story`
 - `mp4-clean`: motif-only video, no frame, no SEED line (1080×1350, already even — no H.264 rounding)
 - `mp4-clean-story`: `mp4-clean` render, letterboxed in a 1080×1920 canvas
-- `reel`: 15 s vertical reel (1080×1920, 30fps, H.264 + AAC, ~2 MB) — see below
+- `reel`: 20 s vertical reel (1080×1920, 30fps, H.264 + AAC, under 4 MB) — see below
 - `txt`: plain text
 - `ans`: ANSI colored text
 - `svg`: scalable vector
@@ -92,22 +92,40 @@ heraldic:~$ /export reel
 heraldic:~$ /export reel ~/Music/track.mp3
 ```
 
-A 15-second loop built from the current blazon (same text, same entropy —
-the reel ends on exactly the grid you see in the terminal):
+A 20-second loop built from the current blazon (same text, same entropy —
+the reel ends on exactly the grid you see in the terminal). When the word
+names something with a silhouette in the library (`donjon`, `crâne`,
+`corbeau`, `grimoire`, `tombstone`… about 270 French and English words), the
+reel goes **word → object → blazon**:
 
 | Time | Sequence |
 |---|---|
-| 0.3 → 1.9 s | the braille frame draws itself |
-| 0.5 → 1.4 s | the word appears in blackletter, dithered into braille dots |
-| 1.55 → 2.7 s | the seed resolves under the word, red digits locking one by one |
-| 2.75 → 3.7 s | the word's dots migrate to the blazon's cluster centers |
-| 3.35 → 8.8 s | the blazon grows: the generator's own particles accumulate |
-| 8.8 → 13.2 s | hold: slow breathing, dithered halo, one light sweep |
-| 13.2 → 15 s | dithered dissolve back to black |
+| 0.3 → 2.5 s | the braille frame draws itself, the word appears in blackletter, the seed resolves in red |
+| 2.5 → 4.5 s | the letters come apart and their dots build the object, bottom up |
+| 4.5 → 7.8 s | the object holds: raking light, a slow moving glow, dithered fog, red embers and sparks |
+| 7.8 → 9.5 s | the object dissolves towards the blazon's cluster centers |
+| 8.4 → 13.5 s | the blazon grows: the generator's own particles accumulate |
+| 13.5 → 18.2 s | hold: slow breathing, dithered halo, one light sweep |
+| 18.2 → 20 s | dithered dissolve back to black |
+
+Words without a silhouette skip the object: the word holds longer, then its
+dots migrate straight to the blazon.
 
 Every frame is a character grid, composited from a glyph atlas rendered
 once with the same pipeline as `png`. The center 1080×1350 of the frame
-lines up with `png-clean-story`.
+lines up with `png-clean-story`. Red (`#E61919`, already the seed's color)
+is the only accent, used for embers and sparks.
+
+### Silhouette library
+
+`assets/silhouettes/` holds 44 curated icons from
+[game-icons.net](https://game-icons.net) (CC BY 3.0, see
+`LICENSE-game-icons.txt`) and `index.json`, which maps each one to its
+words (lowercase, no accents). Matching ignores case and accents and tries
+the singular of a plural. To add a word, add it to an entry's `words`; to
+add a silhouette, drop a game-icons SVG (black background, white glyph) and
+an entry. **Credit the icon** when you publish a reel that uses one: the CLI
+prints the author.
 
 The optional argument is an audio file (anything `ffmpeg` reads) mixed in
 with a fade in/out; without it the audio track is silent. Requires

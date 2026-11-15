@@ -3,9 +3,9 @@
 const { spawn } = require('child_process');
 
 // Contraintes Instagram Reels : H.264, 4:2:0, GOP fermé, moov en tête
-// (faststart), AAC <= 48 kHz. Le débit est plafonné pour qu'un reel de 15 s
-// reste autour de 2 à 4 Mo.
-const MAX_VIDEO_KBPS = 2200;
+// (faststart), AAC <= 48 kHz. Le débit est plafonné pour qu'un reel de 20 s
+// reste sous 4 Mo.
+const MAX_VIDEO_KBPS = 1500;
 
 // Halo léger : la frame est floutée puis recomposée en "screen" sur elle-même.
 const GLOW = 'split[sharp][soft];[soft]gblur=sigma=9[soft];[sharp][soft]blend=all_mode=screen:all_opacity=0.32';
