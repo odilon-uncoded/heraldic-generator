@@ -1,6 +1,6 @@
 {
   "name": "heraldic",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Générateur procédural de blasons ASCII/braille en CLI — même texte, même famille visuelle, variante différente à chaque tirage.",
   "bin": {
     "heraldic": "bin/heraldic.js"
