@@ -45,8 +45,8 @@ function gaussianRandom(rng) {
 function deriveParams(familyRng, variantRng) {
   const symmetryOptions = [
     { type: 'axial', k: 2 },
-    { type: 'radial', k: 3 },
-    { type: 'radial', k: 4 },
+    { type: 'radial', k: 3, mirror: true },
+    { type: 'radial', k: 4, mirror: true },
     { type: 'radial', k: 6 },
     { type: 'radial', k: 8 },
   ];
@@ -62,7 +62,7 @@ function deriveParams(familyRng, variantRng) {
       angle: variantRng() * sectorAngle,
       distance: 0.15 + variantRng() * 0.75,
       radius: 0.10 + variantRng() * 0.16,
-      particleCount: Math.floor((260 + variantRng() * 420) * densityBand),
+      particleCount: Math.ceil(Math.floor((260 + variantRng() * 420) * densityBand) / (symmetry.mirror ? 2 : 1)),
     });
   }
   const jitter = 0.3 + variantRng() * 0.5;
@@ -101,8 +101,10 @@ function generateParticles(params, rng, width, height) {
       centers.push([baseX, baseY]);
       centers.push([2 * cx - baseX, baseY]);
     } else {
-      for (let k = 0; k < params.symmetry.k; k++) {
-        const rot = baseAngle + k * params.sectorAngle;
+      // mirror (k=3, k=4) : chaque branche a son reflet, jamais de moulinet
+      for (let k = 0; k < params.symmetry.k * (params.symmetry.mirror ? 2 : 1); k++) {
+        const rot = (k < params.symmetry.k ? baseAngle : -cluster.angle - Math.PI / 2)
+          + (k % params.symmetry.k) * params.sectorAngle;
         centers.push([
           cx + Math.cos(rot) * cluster.distance * maxRadius,
           cy + Math.sin(rot) * cluster.distance * maxRadius,

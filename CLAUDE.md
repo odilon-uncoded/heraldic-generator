@@ -7,6 +7,7 @@ Générateur procédural de blasons/emblèmes pour l'univers vvd.world × odilon
 - **Fichier unique autonome** : tout dans `index.html`. Zéro dépendance externe, zéro build, zéro backend, zéro API.
 - **Jamais `Math.random()`** : toute la génération consomme un seul flux `mulberry32(seed)` seedé par hash du texte, dans un ordre fixe. C'est ce qui garantit le déterminisme (même texte → même image).
 - **Charte odilon.wav** : fond noir, palette `#6B7EC4` / `#8A9AD4`, aucun contour net, aucun cadre/vignette/cercle de contention. Aucun texte/label sur le visuel exporté.
+- **Jamais de moulinet** : les familles radiales k=3 et k=4 sont toujours miroir (`mirror: true`, symétrie diédrale). Une rotation seule à 3 ou 4 branches dessine des bras crochus qui évoquent un triskèle ou une svastika, et les visuels partent en prod sur Instagram. Testé dans les trois suites.
 - **Séparation stricte** entre `#blason-script` (logique pure, zéro accès DOM, testable en Node) et `#blason-ui` (câblage DOM, non testé). Ne jamais faire fuir du code DOM dans `#blason-script`.
 
 ## Pièges déjà rencontrés (ne pas répéter)
