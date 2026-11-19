@@ -177,3 +177,33 @@ test('slugify produit un nom de fichier sûr et non vide', () => {
   assert.equal(slugify('   '), 'blason');
   assert.ok(slugify('a'.repeat(200)).length <= 40);
 });
+
+
+// Garde-fou : une rotation seule à 3 ou 4 branches dessine un moulinet
+// (triskèle / svastika). Ces familles doivent toujours être miroir.
+test('symétrie : radial k=3 et k=4 sont toujours miroir', () => {
+  const { mulberry32, deriveParams } = loadBlasonCore();
+  for (let seed = 0; seed < 500; seed++) {
+    const { symmetry } = deriveParams(mulberry32(seed));
+    if (symmetry.type === 'radial' && symmetry.k <= 4) {
+      assert.equal(symmetry.mirror, true, `seed ${seed}: k=${symmetry.k} sans miroir`);
+    }
+  }
+});
+
+test('symétrie : les centres miroir sont invariants par réflexion verticale', () => {
+  const { mulberry32, generateParticles } = loadBlasonCore();
+  for (const k of [3, 4]) {
+    const W = 160, H = 200;
+    const params = { symmetry: { type: 'radial', k, mirror: true }, sectorAngle: 2 * Math.PI / k,
+      clusters: [{ angle: 0.37, distance: 0.6, radius: 0, particleCount: 1 }],
+      jitter: 0.5, paletteBias: 0.5, densityBand: 1 };
+    const pts = generateParticles(params, mulberry32(1), W, H);
+    assert.equal(pts.length, 2 * k);
+    const key = (x, y) => `${x.toFixed(6)},${y.toFixed(6)}`;
+    const set = new Set(pts.map((p) => key(p.x, p.y)));
+    for (const p of pts) {
+      assert.ok(set.has(key(W - p.x, p.y)), `k=${k}: reflet manquant pour ${key(p.x, p.y)}`);
+    }
+  }
+});

@@ -33,7 +33,8 @@ server.
 1. **Hash → seed**: the text is hashed (djb2-like) into a 32-bit integer.
 2. **Seeded PRNG** (`mulberry32`): the entire generation draws from this
    single stream, in a fixed order. Never `Math.random()`.
-3. **Derived parameters**: symmetry type (axial, or radial k∈{3,4,6,8}),
+3. **Derived parameters**: symmetry type (axial, or radial k∈{3,4,6,8};
+   k=3 and k=4 are always mirrored so they can never form a pinwheel),
    cluster count, each cluster's position/radius/density, jitter.
 4. **Particle field**: the base sector's clusters are duplicated/mirrored
    per the symmetry, then each one scatters its particles (Gaussian noise,

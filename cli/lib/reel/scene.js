@@ -120,8 +120,10 @@ function buildBloom(word, entropy, core, T) {
       const by = cy + Math.sin(baseAngle) * cluster.distance * maxRadius;
       own.push([bx, by], [2 * cx - bx, by]);
     } else {
-      for (let k = 0; k < params.symmetry.k; k++) {
-        const rot = baseAngle + k * params.sectorAngle;
+      // mirror (k=3, k=4) : chaque branche a son reflet, jamais de moulinet
+      for (let k = 0; k < params.symmetry.k * (params.symmetry.mirror ? 2 : 1); k++) {
+        const rot = (k < params.symmetry.k ? baseAngle : -cluster.angle - Math.PI / 2)
+          + (k % params.symmetry.k) * params.sectorAngle;
         own.push([cx + Math.cos(rot) * cluster.distance * maxRadius, cy + Math.sin(rot) * cluster.distance * maxRadius]);
       }
     }
